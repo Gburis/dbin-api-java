@@ -1,0 +1,28 @@
+name: CI-CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build com Maven
+        run: mvn clean package -DskipTests
+
+      - name: Build Docker image
+        run: docker build -t dbin-app .
+
+      - name: Run container (staging)
+        run: docker run -d -p 8080:8080 dbin-app
