@@ -15,11 +15,13 @@ docker-compose up --build
 
 ## Testes unitários (validação)
 
-./mvnw test
+```sh
+mvnw test
+```
 
 
-## Documentação onlin
+## Documentação online
 
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/swagger-ui.html
 
 ![Swagger](/assets/swagger.png)

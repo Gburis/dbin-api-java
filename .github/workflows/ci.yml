@@ -19,10 +19,10 @@ jobs:
           java-version: '21'
 
       - name: Build com Maven
-        run: mvn clean package -DskipTests
+        run: mvn clean package
 
       - name: Build Docker image
         run: docker build -t dbin-app .
 
       - name: Run container (staging)
-        run: docker run -d -p 8080:8080 dbin-app
+        run: docker run --env-file .env -d -p 8080:8080 dbin-app
